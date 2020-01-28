@@ -37,6 +37,22 @@ Some ideas for exploration:
 1. How does the probability of default payment vary by categories of different demographic variables?
 2. Which variables are the strongest predictors of default payment?
 
+**Frequency bar chart for each class(Strongly imbalanced data)**
+![alt text](https://raw.githubusercontent.com/Jeremyzzzz/credit-card-analysis/master/barcharts.png)
+
+One approach to addressing imbalanced datasets is to oversample the minority class. The simplest approach involves duplicating examples in the minority class, although these examples don’t add any new information to the model. Instead, new examples can be synthesized from the existing examples. This is a type of **data augmentation** for the minority class and is referred to as the **Synthetic Minority Oversampling Technique**, or **SMOTE** for short.
+
+Use **cross validation** and **random forest** to train the dataset.
+
+model1 summary(without adding any predictors)
+![alt text](https://raw.githubusercontent.com/Jeremyzzzz/credit-card-analysis/master/model1.png)
+
+model2 summary(add new predictors)
+**With some domain knowledge, I added more predictors by calculating (bill_amt - pay_amt) / limit which might be a good indicator of how much proportion of the amount he could afford at this months. If I only consider bill_amt - pay_amt, it is not fair because someone who is very wealthy and have a high credit card limit could still have a huge amount of money to pay, but the limit is much higher than that amount. From that, we could still tell that person is able to pay back the money in the future. Therefore, proportion is a better indicator of default payment. In addition, I guess some specific group of people will prefer to set up default payment. So I added another indicator predictor which is whoever has a limit amount > 400000 and under 35 will be set value to 1 and the others to 0. It turns out that this is a good predictor as well.
+![alt text](https://raw.githubusercontent.com/Jeremyzzzz/credit-card-analysis/master/model2.png)
+
+**Overall, the new predictors and SMOTE algorithm give a better prediction of the default payment.**
+
 ### Acknowledgements
 Any publications based on this dataset should acknowledge the following:
 
