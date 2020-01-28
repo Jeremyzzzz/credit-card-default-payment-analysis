@@ -1,4 +1,4 @@
-setwd("~/Desktop/Courses/Rcamp/case3")
+setwd("../case3")
 credit <- read.csv("creditcard.csv")
 
 head(credit)
